@@ -1,13 +1,17 @@
 package org.breupach.springcloud.msvc.usuarios.controllers;
 
+import jakarta.validation.Valid;
 import org.breupach.springcloud.msvc.usuarios.models.entity.Usuario;
 import org.breupach.springcloud.msvc.usuarios.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -31,12 +35,18 @@ public class UsuarioController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> crear(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return validate(bindingResult);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(usuario));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editar(@RequestBody Usuario usuario, @PathVariable Long id) {
+    public ResponseEntity<?> editar(@Valid @RequestBody Usuario usuario, BindingResult bindingResult, @PathVariable Long id) {
+        if (bindingResult.hasErrors()) {
+            return validate(bindingResult);
+        }
         Optional<Usuario> o = usuarioService.porId(id);
         if (o.isPresent()) {
             Usuario usuarioDb = o.get();
@@ -56,5 +66,13 @@ public class UsuarioController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    private static ResponseEntity<Map<String, String>> validate(BindingResult bindingResult) {
+        Map<String, String> errors = new HashMap<>();
+        bindingResult.getFieldErrors().forEach(fieldError -> {
+            errors.put(fieldError.getField(), "El campo " + fieldError.getField() + " " + fieldError.getDefaultMessage());
+        });
+        return ResponseEntity.badRequest().body(errors);
     }
 }
