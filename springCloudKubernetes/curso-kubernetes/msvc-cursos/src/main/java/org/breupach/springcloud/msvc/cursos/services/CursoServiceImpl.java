@@ -6,6 +6,7 @@ import org.breupach.springcloud.msvc.cursos.models.entity.Curso;
 import org.breupach.springcloud.msvc.cursos.models.entity.CursoUsuario;
 import org.breupach.springcloud.msvc.cursos.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,22 @@ public class CursoServiceImpl implements CursoService {
     @Transactional(readOnly = true)
     public Optional<Curso> porId(Long id) {
         return cursoRepository.findById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Curso> porIdConUsuarios(Long id) {
+        Optional<Curso> o = cursoRepository.findById(id);
+        if (o.isPresent()) {
+            Curso curso = o.get();
+            if (!curso.getCursoUsuarios().isEmpty()) {
+                List<Long> ids = curso.getCursoUsuarios().stream().map(CursoUsuario::getUsuarioId).toList();
+                List<Usuario> usuarios = usuarioClientRest.obtenerUsuarios(ids);
+                curso.setUsuarios(usuarios);
+            }
+            return Optional.of(curso);
+        }
+        return Optional.empty();
     }
 
     @Override

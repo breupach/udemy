@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface UsuarioService {
     List<Usuario> listar();
     Optional<Usuario> porId(Long id);
+    List<Usuario> porIds(Iterable<Long> ids);
     Usuario guardar(Usuario usuario);
     void eliminar(Long id);
     Optional<Usuario> porEmail(String email);

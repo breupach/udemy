@@ -30,6 +30,14 @@ public class UsuarioController {
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/usuarios")
+    public ResponseEntity<?> obtenerUsuarios(@RequestParam List<Long> ids) {
+        List<Usuario> usuarios = usuarioService.porIds(ids);
+        if (!usuarios.isEmpty()) {
+            return ResponseEntity.ok(usuarios);
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult bindingResult) {

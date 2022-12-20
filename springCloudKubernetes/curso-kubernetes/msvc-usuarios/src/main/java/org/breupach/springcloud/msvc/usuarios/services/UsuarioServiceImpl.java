@@ -26,6 +26,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Optional<Usuario> porId(Long id) {
         return usuarioRepository.findById(id);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> porIds(Iterable<Long> ids) {
+        return (List<Usuario>) usuarioRepository.findAllById(ids);
+    }
 
     @Override
     @Transactional
