@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "b71a2399-5cb4-4cc9-9018-ec63b8ac320e",
+		"name": "cursoSpringDockerKubernetes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3885512"
+	},
+	"item": [
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "listarUsuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001",
+							"host": [
+								"localhost"
+							],
+							"port": "8001"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarUsuariosPorIds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/usuarios?ids=1,2,3,7",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,3,7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Pedro11\",\r\n    \"email\": \"juan@gmail.com\",\r\n    \"password\": \"contrasena3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001",
+							"host": [
+								"localhost"
+							],
+							"port": "8001"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editarUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Pedro2\",\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"password\": \"contrasena3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detalleUsuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "elimiarUsuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cursos",
+			"item": [
+				{
+					"name": "listarCursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002",
+							"host": [
+								"localhost"
+							],
+							"port": "8002"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearCursos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Spring Cloud\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002",
+							"host": [
+								"localhost"
+							],
+							"port": "8002"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editarCursos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Pedro2\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detalleCursos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "elimiarCursos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "asignarUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/asignar-usuario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"asignar-usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarUsuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/eliminar-usuario/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"eliminar-usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearAsignarUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"nombre\": \"Juan Nuevo\",\r\n    \"email\": \"juanNuevo@gmail.com\",\r\n    \"password\": \"contrasena1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/crear-usuario/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"crear-usuario",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
