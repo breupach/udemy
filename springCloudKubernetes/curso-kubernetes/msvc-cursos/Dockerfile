@@ -5,20 +5,20 @@ RUN mkdir -p /usr/local/maven && \
 ENV MAVEN_HOME /usr/local/maven
 ENV PATH $PATH:$MAVEN_HOME/bin
 
-WORKDIR /app/msvc-usuarios
+WORKDIR /app/msvc-cursos
 
 COPY ./pom.xml /app
-COPY ./msvc-usuarios/pom.xml .
+COPY ./msvc-cursos/pom.xml .
 RUN mvn clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && rm -r ./target/
 
-COPY ./msvc-usuarios/src ./src
+COPY ./msvc-cursos/src ./src
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 RUN mkdir "./logs"
-COPY --from=builder /app/msvc-usuarios/target/msvc-usuarios-0.0.1-SNAPSHOT.jar .
-EXPOSE 8001
+COPY --from=builder /app/msvc-cursos/target/msvc-cursos-0.0.1-SNAPSHOT.jar .
+EXPOSE 8002
 
-ENTRYPOINT ["java", "-jar", "msvc-usuarios-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "msvc-cursos-0.0.1-SNAPSHOT.jar"]
